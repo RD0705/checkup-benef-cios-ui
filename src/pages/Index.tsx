@@ -1,6 +1,7 @@
 import { Shield, Heart, Users, ChevronRight, IdCard, MapPin, Activity, Phone, Mail, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import Pricing from "@/components/Pricing";
 
 const Index = () => {
   return (
@@ -18,9 +19,9 @@ const Index = () => {
             <a href="#servicos" className="text-muted-foreground hover:text-brand-blue transition-colors font-medium">
               Serviços
             </a>
-            <a href="#sobre" className="text-muted-foreground hover:text-brand-blue transition-colors font-medium">
+            <Link to="/sobre" className="text-muted-foreground hover:text-brand-blue transition-colors font-medium">
               Sobre Nós
-            </a>
+            </Link>
             <a href="#contato" className="text-muted-foreground hover:text-brand-blue transition-colors font-medium">
               Contato
             </a>
@@ -67,9 +68,11 @@ const Index = () => {
                   Acessar Carteirinha
                   <ChevronRight className="w-5 h-5" />
                 </Button>
-                <Button variant="brand-outline" size="xl">
-                  Conhecer Serviços
-                </Button>
+                <a href="#planos">
+                  <Button variant="brand-outline" size="xl">
+                    Conhecer Serviços
+                  </Button>
+                </a>
               </div>
 
               <div className="flex items-center gap-8 mt-10">
@@ -212,6 +215,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <Pricing />
 
       {/* CTA Section */}
       <section className="py-20 bg-card">
