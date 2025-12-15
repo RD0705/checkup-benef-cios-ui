@@ -1,16 +1,29 @@
-import { Shield, Download, Wallet, User, Calendar, CreditCard, ChevronLeft } from "lucide-react";
+import { Shield, Download, Wallet, User, Calendar, CreditCard, ChevronLeft, QrCode, Check, FileText, Users, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const Carteirinha = () => {
   // Mock user data
   const userData = {
     name: "João Carlos da Silva",
+    cpf: "***.***.***-00",
     plan: "Plano Ouro",
+    planType: "Premium",
     cardNumber: "4532 •••• •••• 8976",
     validity: "12/2026",
     memberId: "CB-2024-001234",
+    dependents: 0,
+    status: "Ativo",
   };
+
+  const benefits = [
+    "Consultas Ilimitadas",
+    "Exames Laboratoriais",
+    "Telemedicina 24h",
+    "Descontos em Farmácias",
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -42,7 +55,7 @@ const Carteirinha = () => {
 
       {/* Main Content */}
       <main className="pt-24 pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-5xl">
           {/* Back Link */}
           <Link
             to="/"
@@ -62,7 +75,7 @@ const Carteirinha = () => {
           </div>
 
           {/* 3D Card Container */}
-          <div className="flex justify-center mb-12" style={{ perspective: "1000px" }}>
+          <div className="flex justify-center mb-8" style={{ perspective: "1000px" }}>
             <div
               className="relative w-[380px] h-[240px] animate-float"
               style={{
@@ -149,7 +162,7 @@ const Carteirinha = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto mb-16">
             <Button variant="cta" size="lg" className="flex-1 gap-2">
               <Download className="w-5 h-5" />
               Baixar PDF
@@ -160,45 +173,123 @@ const Carteirinha = () => {
             </Button>
           </div>
 
-          {/* Additional Info */}
-          <div className="mt-16 max-w-2xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-card rounded-xl p-6 border border-border shadow-card">
-                <div className="w-12 h-12 rounded-lg bg-brand-blue-light flex items-center justify-center mb-4">
-                  <User className="w-6 h-6 text-brand-blue" />
+          {/* Details Section */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Plan Information Card */}
+            <Card className="shadow-card">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-brand-blue-light flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-brand-blue" />
+                  </div>
+                  <CardTitle className="text-lg text-foreground">Informações do Plano</CardTitle>
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">Dados do Titular</h3>
-                <div className="space-y-2 text-sm">
-                  <p className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Nome:</span> {userData.name}
-                  </p>
-                  <p className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Plano:</span> {userData.plan}
-                  </p>
-                  <p className="text-muted-foreground">
-                    <span className="font-medium text-foreground">ID:</span> {userData.memberId}
-                  </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between py-2 border-b border-border">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <BadgeCheck className="w-4 h-4" />
+                    <span className="text-sm">Status</span>
+                  </div>
+                  <Badge className="bg-success/10 text-success border-success/20 hover:bg-success/20">
+                    {userData.status}
+                  </Badge>
                 </div>
-              </div>
 
-              <div className="bg-card rounded-xl p-6 border border-border shadow-card">
-                <div className="w-12 h-12 rounded-lg bg-brand-orange-light flex items-center justify-center mb-4">
-                  <Calendar className="w-6 h-6 text-brand-orange" />
+                <div className="flex items-center justify-between py-2 border-b border-border">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <User className="w-4 h-4" />
+                    <span className="text-sm">Titular</span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{userData.name}</span>
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">Validade</h3>
-                <div className="space-y-2 text-sm">
-                  <p className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Válido até:</span> {userData.validity}
+
+                <div className="flex items-center justify-between py-2 border-b border-border">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <CreditCard className="w-4 h-4" />
+                    <span className="text-sm">CPF</span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{userData.cpf}</span>
+                </div>
+
+                <div className="flex items-center justify-between py-2 border-b border-border">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Shield className="w-4 h-4" />
+                    <span className="text-sm">Plano</span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{userData.plan} ({userData.planType})</span>
+                </div>
+
+                <div className="flex items-center justify-between py-2 border-b border-border">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Calendar className="w-4 h-4" />
+                    <span className="text-sm">Validade</span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{userData.validity}</span>
+                </div>
+
+                <div className="flex items-center justify-between py-2">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Users className="w-4 h-4" />
+                    <span className="text-sm">Dependentes</span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{userData.dependents} dependentes</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* QR Code and Benefits Card */}
+            <Card className="shadow-card">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-brand-orange-light flex items-center justify-center">
+                    <QrCode className="w-5 h-5 text-brand-orange" />
+                  </div>
+                  <CardTitle className="text-lg text-foreground">Validação e Benefícios</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* QR Code Section */}
+                <div className="flex flex-col items-center">
+                  <div className="w-32 h-32 bg-foreground rounded-xl flex items-center justify-center mb-3">
+                    {/* Simulated QR Code Pattern */}
+                    <div className="w-28 h-28 bg-background rounded-lg p-2">
+                      <div className="w-full h-full grid grid-cols-7 gap-0.5">
+                        {Array.from({ length: 49 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className={`rounded-sm ${
+                              Math.random() > 0.5 ? 'bg-foreground' : 'bg-transparent'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Apresente este código na recepção
                   </p>
-                  <p className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Status:</span>{" "}
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-success/10 text-success text-xs font-medium">
-                      Ativo
-                    </span>
+                  <p className="text-xs font-mono text-muted-foreground mt-1">
+                    {userData.memberId}
                   </p>
                 </div>
-              </div>
-            </div>
+
+                {/* Benefits Section */}
+                <div>
+                  <h4 className="text-sm font-semibold text-foreground mb-3">Resumo de Cobertura</h4>
+                  <div className="space-y-2">
+                    {benefits.map((benefit, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="w-5 h-5 rounded-full bg-success/10 flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-success" />
+                        </div>
+                        <span className="text-sm text-muted-foreground">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
