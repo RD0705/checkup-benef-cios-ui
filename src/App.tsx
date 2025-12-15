@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Sobre from "./pages/Sobre";
 import RedeCredenciada from "./pages/RedeCredenciada";
 import Carteirinha from "./pages/Carteirinha";
+import MinhaArea from "./pages/MinhaArea";
 import Assinatura from "./pages/Assinatura";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/rede-credenciada" element={<RedeCredenciada />} />
           <Route path="/carteirinha" element={<Carteirinha />} />
+          <Route path="/minha-area" element={<MinhaArea />} />
           <Route path="/assinatura" element={<Assinatura />} />
           
           {/* Admin Routes */}
