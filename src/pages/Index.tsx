@@ -64,10 +64,12 @@ const Index = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="cta" size="xl">
-                  Acessar Carteirinha
-                  <ChevronRight className="w-5 h-5" />
-                </Button>
+                <Link to="/minha-area">
+                  <Button variant="cta" size="xl">
+                    Acessar Carteirinha
+                    <ChevronRight className="w-5 h-5" />
+                  </Button>
+                </Link>
                 <a href="#planos">
                   <Button variant="brand-outline" size="xl">
                     Conhecer Serviços
@@ -229,10 +231,12 @@ const Index = () => {
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
               Acesse sua conta e aproveite todos os benefícios da nossa plataforma digital de saúde.
             </p>
-            <Button variant="cta" size="xl">
-              Acessar Minha Conta
-              <ChevronRight className="w-5 h-5" />
-            </Button>
+            <Link to="/minha-area">
+              <Button variant="cta" size="xl">
+                Acessar Minha Conta
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
