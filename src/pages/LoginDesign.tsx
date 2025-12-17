@@ -1,5 +1,38 @@
 import { Heart, Shield, Users } from "lucide-react";
 
+// Clerk Appearance Theme - Export this to use with ClerkProvider
+export const clerkAppearance = {
+  layout: {
+    socialButtonsPlacement: 'bottom' as const,
+    logoPlacement: 'none' as const,
+  },
+  variables: {
+    colorPrimary: '#FF6600', // brand-orange
+    colorText: '#003366', // brand-blue
+    colorTextSecondary: '#64748b',
+    colorBackground: '#ffffff',
+    colorInputBackground: '#ffffff',
+    colorInputText: '#003366',
+    fontFamily: 'Inter, system-ui, sans-serif',
+    borderRadius: '0.5rem',
+  },
+  elements: {
+    card: 'shadow-none bg-transparent border-none p-0',
+    headerTitle: 'hidden',
+    headerSubtitle: 'hidden',
+    formButtonPrimary: 'bg-[#FF6600] hover:bg-[#FF6600]/90 text-white font-semibold py-3 rounded-lg transition-all',
+    formFieldInput: 'border-gray-200 focus:border-[#FF6600] focus:ring-[#FF6600] rounded-lg py-3',
+    formFieldLabel: 'text-[#003366] font-medium',
+    footerActionLink: 'text-[#003366] hover:text-[#FF6600] hover:underline font-medium',
+    socialButtonsBlockButton: 'border-gray-200 hover:bg-gray-50 rounded-lg py-3',
+    dividerLine: 'bg-gray-200',
+    dividerText: 'text-gray-400',
+    identifierPreviewText: 'text-[#003366]',
+    formFieldSuccessText: 'text-green-600',
+    formFieldErrorText: 'text-red-500',
+  }
+};
+
 const LoginDesign = () => {
   return (
     <div className="min-h-screen flex">
@@ -55,70 +88,47 @@ const LoginDesign = () => {
       </div>
 
       {/* Right Side - Form Area */}
-      <div className="w-full lg:w-1/2 flex flex-col bg-white">
-        {/* Form Container */}
-        <div className="flex-1 flex flex-col justify-center px-8 sm:px-16 xl:px-24">
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center bg-white px-8 sm:px-16 xl:px-24">
+        <div className="w-full max-w-md">
           {/* Logo */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-brand-blue flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" />
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-14 h-14 rounded-xl bg-brand-blue flex items-center justify-center">
+                <Heart className="w-7 h-7 text-white" />
               </div>
-              <span className="text-2xl font-bold text-brand-blue">
-                CheckUp Benefícios
-              </span>
             </div>
-            
-            <h1 className="text-3xl font-bold text-gray-900">
-              Bem-vindo de volta
+            <h1 className="text-3xl font-bold text-brand-blue">
+              Acesse sua conta
             </h1>
             <p className="mt-2 text-gray-500">
-              Acesse sua conta para gerenciar seus benefícios
+              Gerencie seus benefícios de saúde
             </p>
           </div>
 
-          {/* Clerk Mount Point */}
+          {/* Clerk Component Placeholder */}
           <div 
             id="clerk-mount"
-            className="w-full min-h-[320px] border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center bg-gray-50/50"
+            className="w-full min-h-[350px] bg-gray-100 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-300"
           >
-            <p className="text-gray-400 text-sm">
-              Componente de autenticação será montado aqui
+            <p className="text-gray-500 font-mono text-sm text-center px-4">
+              [[CLERK LOGIN COMPONENT HERE]]
             </p>
           </div>
 
-          {/* Divider */}
-          <div className="my-6 flex items-center gap-4">
-            <div className="flex-1 h-px bg-gray-200" />
-            <span className="text-sm text-gray-400">ou</span>
-            <div className="flex-1 h-px bg-gray-200" />
+          {/* Footer */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-gray-400">
+              Ao continuar, você concorda com nossos{" "}
+              <a href="#" className="text-brand-blue hover:underline">
+                Termos de Uso
+              </a>{" "}
+              e{" "}
+              <a href="#" className="text-brand-blue hover:underline">
+                Política de Privacidade
+              </a>
+            </p>
           </div>
-
-          {/* Alternative Actions */}
-          <p className="text-center text-gray-600">
-            Não tem uma conta?{" "}
-            <a href="#" className="text-brand-orange font-semibold hover:underline">
-              Cadastre-se agora
-            </a>
-          </p>
         </div>
-
-        {/* Footer */}
-        <footer className="py-6 px-8 sm:px-16 xl:px-24 border-t border-gray-100">
-          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400">
-            <a href="#" className="hover:text-gray-600 transition-colors">
-              Termos de Uso
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-gray-600 transition-colors">
-              Política de Privacidade
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-gray-600 transition-colors">
-              Suporte
-            </a>
-          </div>
-        </footer>
       </div>
     </div>
   );
