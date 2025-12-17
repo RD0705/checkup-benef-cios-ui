@@ -9,6 +9,7 @@ import RedeCredenciada from "./pages/RedeCredenciada";
 import Carteirinha from "./pages/Carteirinha";
 import MinhaArea from "./pages/MinhaArea";
 import Assinatura from "./pages/Assinatura";
+import LoginDesign from "./pages/LoginDesign";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/carteirinha" element={<Carteirinha />} />
           <Route path="/minha-area" element={<MinhaArea />} />
           <Route path="/assinatura" element={<Assinatura />} />
+          <Route path="/login" element={<LoginDesign />} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
